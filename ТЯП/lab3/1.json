@@ -1,0 +1,13 @@
+{
+  "states": ["q0"],
+  "alphabet": [" "],
+  "in_stack": [" ", "Z"],
+  "rules": [
+    ["q0", " ", "Z", "q0", " Z"],
+    ["q0", " ", " ", "q0", "EPS"],
+    ["q0", "EPS", "Z", "q0", "EPS"]
+  ],
+  "start": "q0",
+  "start_stack": "Z",
+  "end": ["q0"]
+}

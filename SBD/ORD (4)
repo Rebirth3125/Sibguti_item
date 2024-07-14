@@ -1,0 +1,21 @@
+DECLARE
+ invalid_amt exception;
+ n_amt NUMBER;
+ status VARCHAR2(50);
+ return_code NUMBER;
+
+ BEGIN
+     SELECT MAX(AMT) INTO n_amt FROM ord;
+     IF n_amt > 9000 THEN
+         RAISE invalid_amt;
+     END IF;
+
+ EXCEPTION
+     when invalid_amt then
+         DBMS_OUTPUT.PUT_LINE('Слишком большая сумма: ' || TO_CHAR(n_amt));
+
+     when OTHERS then
+        DBMS_OUTPUT.PUT_LINE('Ошибка: ' || SQLERRM);
+
+    END;
+/

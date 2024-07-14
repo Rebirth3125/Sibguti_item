@@ -1,0 +1,21 @@
+DECLARE
+    invalid_rating EXCEPTION;
+    PRAGMA EXCEPTION_INIT(invalid_rating, -20001);
+    min_rating NUMBER;
+
+BEGIN
+    SELECT MIN(rating) INTO min_rating FROM cust;
+    IF min_rating < 200 THEN
+        RAISE_APPLICATION_ERROR(-20001, 'Минимальный рейтинг покупателя меньше 200: ' || TO_CHAR(min_rating));
+    END IF;
+
+    ; min_rating := 1 / 0;
+
+EXCEPTION
+    WHEN invalid_rating THEN
+        DBMS_OUTPUT.PUT_LINE('Ошибка: ' || SQLERRM);
+
+    WHEN OTHERS THEN
+        DBMS_OUTPUT.PUT_LINE('Общая ошибка: ' || SQLERRM);
+END;
+/

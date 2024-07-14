@@ -1,0 +1,20 @@
+states: q0, q1, q2, q3, q4, qf
+alphabet: a, b, c, _
+in_stack: a, c, Z
+in_transform: 0, 1
+start: q0
+start_stack: Z
+end: qf
+rules: 
+q0, a, Z, q0, aZ, lambda
+q0, a, a, q0, aa, lambda
+q0, c, a, q1, a, 0
+q1, c, a, q2, a, 00
+q2, c, a, q2, ca, 00
+q2, c, c, q2, cc, 00
+q2, b, c, q3, EPS, lambda
+q3, b, c, q3, EPS, lambda
+q3, lambda, a, q4, a, lambda
+q2, lambda, a, q4, a, lambda
+q4, lambda, a, q4, EPS, 1
+q4, lambda, Z, qf, EPS, lambda
